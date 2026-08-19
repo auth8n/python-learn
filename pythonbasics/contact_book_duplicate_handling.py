@@ -6,7 +6,7 @@ class ContactBook:
         self.contacts[name] = {"number": number,
                                "email": email}
 
-    def remove_contact(self, name:str) -> str:
+    def remove_contact(self, name:str) -> dict | None:
         return self.contacts.pop(name, None)
 
     def find_contact(self, name:str) -> str:
@@ -17,6 +17,10 @@ class ContactBook:
         for name, details in self.contacts.items():
             contacts += f"{name}: Phone number: {details['number']} Email: {details['email']}\n"
         return contacts
+        #return "\n".join(
+        #   f"{name}: Phone number: {details['number']} Email: {details['email']}"
+        #   for name, details in self.contacts.items()   
+        #)
 
 contacts = ContactBook()
 
@@ -25,6 +29,7 @@ contacts.add_contact("Nereah", "0722223445", "nereahopiyo@gmail.com")
 contacts.add_contact("Ronald", "0711223456", "ronaldotego@gmail.com")
 
 contacts.remove_contact("Ronald")
+print(contacts.remove_contact("Nicole"))
 
 print(contacts.find_contact("Nereah"))
 print(contacts.list_contacts())
