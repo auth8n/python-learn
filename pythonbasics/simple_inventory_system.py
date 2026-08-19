@@ -6,15 +6,14 @@ class Inventory:
         self.items[name] = {"price": price,
                             "quantity": quantity}    
 
-    def remove_item(self, name:str):
+    def remove_item(self, name:str) -> str:
         self.items.pop(name, None)
 
-    def get_item(self, name:str):
+    def get_item(self, name:str) -> str:
         return self.items.get(name)
 
-    def list_items(self):
+    def list_items(self) -> str:
         result = ""
-
         for name, details in self.items.items():
             result += f"{name}: Price=${details['price']}, Quantity={details['quantity']}\n"
         return result
