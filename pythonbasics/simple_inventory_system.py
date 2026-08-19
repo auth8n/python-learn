@@ -3,30 +3,20 @@ class Inventory:
         self.items = {}
 
     def add_item(self, name:str, price:float, quantity:int):
-        if name not in self.items:
-            self.items[name] = {
-                "price": price,
-                "quantity": quantity
-            }
-        else:
-            self.items[name].update({
-                "price": price,
-                "quantity": quantity
-            })        
+        self.items[name] = {"price": price,
+                            "quantity": quantity}    
 
     def remove_item(self, name:str):
-        if name in self.items:
-            self.items.pop(name, None)
+        self.items.pop(name, None)
 
     def get_item(self, name:str):
-        if name in self.items:
-            return self.items[name]
+        return self.items.get(name)
 
     def list_items(self):
         result = ""
-        for item in self.items:
-            for key, value in self.items[item].items():
-                result += f"{key}: {value}\n"
+
+        for name, details in self.items.items():
+            result += f"{name}: Price=${details['price']}, Quantity={details['quantity']}\n"
         return result
 
 items = Inventory()

@@ -3,16 +3,11 @@ class StudentRecords:
         self.records = {}
 
     def add_student(self, id: int, name: str, course:str):
-        if id in self.records:
-            self.records[id].update({"name": name,
-                                     "course": course})
-        else:
-            self.records[id] = {"name": name,
-                                "course": course}
+        self.records[id] = {"name": name,
+                            "course": course}
 
     def remove_student(self, id: int):
-        if id in self.records:
-            self.records.pop(id, None)
+        self.records.pop(id, None)
 
     def lookup_student(self, id: int):
         if id in self.records:
@@ -22,11 +17,10 @@ class StudentRecords:
 
     def list_students(self):
         result = ""
-        for student in self.records:
-            for key,  value in self.records[student].items():
-                result += f"{key}: {value}\n"
+    
+        for id, details in self.records.items():
+            result += f"{id}: Name: {details['name']} Course: {details['course']}\n"
         return result
-
 
 students = StudentRecords()
 
