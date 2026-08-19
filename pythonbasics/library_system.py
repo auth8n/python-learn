@@ -10,18 +10,18 @@ class Library:
         }
 
     def borrow_book(self, book_id:str):
-        if self.books[book_id]["availability"] == True:
+        if book_id in self.books and self.books[book_id]["availability"]:
             self.books[book_id]["availability"] = False
 
     def return_book(self, book_id:str):
-        if self.books[book_id]["availability"] == False:
+        if book_id in self.books:
             self.books[book_id]["availability"] = True
 
     def remove_book(self, book_id:str):
         self.books.pop(book_id, None)
 
-    def lookup_book(self, book_id:str) -> str:
-        return self.books[book_id]
+    def lookup_book(self, book_id:str) -> dict | None:
+        return self.books.get(book_id)
 
     def list_all_books(self):
         return "\n".join(
